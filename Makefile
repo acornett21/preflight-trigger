@@ -61,8 +61,9 @@ cover:
 	-cover -coverprofile=coverage.out
 
 GOFUMPT = $(shell pwd)/bin/gofumpt
+GOFUMPT_VERSION ?= v0.10.0
 gofumpt: ## Download envtest-setup locally if necessary.
-	$(call go-install-tool,$(GOFUMPT),mvdan.cc/gofumpt@latest)
+	$(call go-install-tool,$(GOFUMPT),mvdan.cc/gofumpt@$(GOFUMPT_VERSION))
 
 # go-get-tool will 'go get' any package $2 and install it to $1.
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))

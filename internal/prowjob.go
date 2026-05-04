@@ -65,7 +65,8 @@ func getJobArtifactsURL(prowJob *pjapi.ProwJob, config *prowconfig.Config) strin
 	spec := downwardapi.NewJobSpec(prowJob.Spec, prowJob.Status.BuildID, prowJob.Name)
 	gcsConfig := config.Plank.GuessDefaultDecorationConfig(identifier, prowJob.Spec.Cluster).GCSConfiguration
 	jobBasePath, _, _ := gcsupload.PathsForJob(gcsConfig, &spec, "")
-	return fmt.Sprintf("%s%s/%s",
+	return fmt.Sprintf(
+		"%s%s/%s",
 		config.Deck.Spyglass.GCSBrowserPrefix,
 		gcsConfig.Bucket,
 		jobBasePath,
